@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="zimmer_hrc03" params="parent">
+
+    <!-- Include original URDF (already defines zimmer_base_link) -->
+    <xacro:include filename="$(find zimmer_hrc03_description)/urdf/HRC-03-118505(10)HRC-03_v1.urdf"/>
+
+    <!-- Mount gripper to robot tool0 -->
+    <joint name="zimmer_mount_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="zimmer_base_link"/>
+      <origin xyz="0 0 0.0" rpy="0 0 0.44159"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

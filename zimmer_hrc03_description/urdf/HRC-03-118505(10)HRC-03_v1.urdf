@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="zimmer_hrc03">
+
+  <!-- ================= BASE LINK ================= -->
+  <link name="zimmer_base_link">
+    <inertial>
+      <origin xyz="-0.00092718 0.0059507 0.034944" rpy="0 0 0" />
+      <mass value="0.27939" />
+      <inertia
+        ixx="0.00032445"
+        ixy="-2.3249E-08"
+        ixz="-1.9967E-07"
+        iyy="0.00022854"
+        iyz="3.1026E-05"
+        izz="0.00021249" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://zimmer_hrc03_description/meshes/base_link.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75 0.75 0.75 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://zimmer_hrc03_description/meshes/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= LEFT FINGER ================= -->
+  <link name="zimmer_left_finger">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.014997" />
+      <inertia
+        ixx="2.6479E-06"
+        ixy="-5.7127E-08"
+        ixz="5.2868E-08"
+        iyy="1.2151E-06"
+        iyz="3.4414E-07"
+        izz="1.9805E-06" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://zimmer_hrc03_description/meshes/left_finger.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75 0.75 0.75 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://zimmer_hrc03_description/meshes/left_finger.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="zimmer_left_finger_joint" type="prismatic">
+    <origin xyz="-0.0010119 0.011081 -0.0053514" rpy="1.5708 0 0" />
+    <parent link="zimmer_base_link" />
+    <child link="zimmer_left_finger" />
+    <axis xyz="0 0 1" />
+    <limit lower="0.0" upper="0.012" effort="10" velocity="0.2" />
+  </joint>
+
+
+  <!-- ================= RIGHT FINGER ================= -->
+  <link name="zimmer_right_finger">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.014997" />
+      <inertia
+        ixx="2.6479E-06"
+        ixy="5.7127E-08"
+        ixz="5.2868E-08"
+        iyy="1.2151E-06"
+        iyz="-3.4414E-07"
+        izz="1.9805E-06" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://zimmer_hrc03_description/meshes/right_finger.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75 0.75 0.75 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://zimmer_hrc03_description/meshes/right_finger.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="zimmer_right_finger_joint" type="prismatic">
+    <origin xyz="-0.00081187 -0.0073244 -0.0053514" rpy="1.5708 0 0" />
+    <parent link="zimmer_base_link" />
+    <child link="zimmer_right_finger" />
+    <axis xyz="0 0 -1" />
+    <mimic joint="zimmer_left_finger_joint" multiplier="1.0" />
+    <limit lower="0.0" upper="0.012" effort="10" velocity="0.2" />
+  </joint>
+
+</robot>
